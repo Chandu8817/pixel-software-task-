@@ -10,10 +10,10 @@ async function NewPostListen() {
 
 
     try {
-        const socialContract = new web3.eth.Contract(abi, "0x7A5d8438Bf6131cb4E991d71403e38061EECC42a")
+        const socialContract = new web3.eth.Contract(abi, "0xbB139FecaC5170E983C5bcef94b38E64FcC4D210")
 
         var subscription = web3.eth.subscribe('logs', {
-            address: '0x7A5d8438Bf6131cb4E991d71403e38061EECC42a',
+            address: '0xbB139FecaC5170E983C5bcef94b38E64FcC4D210',
             topics: ["0x1473a8b7d554cfd8edd2d5a65573950033e19ee282032c73e2845d633d6aacef"]
         }, async function (error, result) {
 

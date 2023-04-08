@@ -2,36 +2,32 @@
 pragma solidity ^0.8.0;
 
 contract SocailPost {
+
+    uint256 PostIdCounter;
     struct Post {
         string postIpfsHash;
         address user;
         uint256 dateTIme;
     }
     event newPost(string postIpfsHash, address user, uint256 dateTime);
+    mapping(uint256=> Post) post;
     Post[]  public Posts;
 
-    function AddPost(Post calldata post) public {
-        Posts.push(post);
-        emit newPost(post.postIpfsHash, post.user, post.dateTIme);
+    function AddPost(Post calldata _post) public {
+        
+            PostIdCounter++;
+            
+        Posts.push(_post);
+        post[PostIdCounter]= _post;
+        emit newPost(_post.postIpfsHash, _post.user, _post.dateTIme);
     }
 
 
-    function getPostbyHash(string memory posthash) public view returns (Post memory) {
-        uint length = Posts.length;
-         bytes32 hash = keccak256(abi.encode(posthash));
+    function getPostbyId(uint256 Id) public view returns (Post memory) {
+        require(post[Id].user != address(0),"no post availabe");
+        return post[Id];
+                
 
-        if (length > 0) {
-            for (uint256 index = 0; index < length; ) {
-                require(keccak256(abi.encode(Posts[index].postIpfsHash)) == hash, "no post availabe");
-                if (keccak256(abi.encode(Posts[index].postIpfsHash))==hash) {
-                    return Posts[index];
-                }
-                unchecked {
-                    index++;
-                }
-            }
-        }
-        revert("no post availabe");
     }
 
     function getAllPosts() public view returns(Post[] memory){

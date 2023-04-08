@@ -1,93 +1,152 @@
- [
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "string",
-          "name": "postIpfsHash",
-          "type": "string"
-        },
-        {
-          "indexed": false,
-          "internalType": "address",
-          "name": "user",
-          "type": "address"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "dateTime",
-          "type": "uint256"
-        }
-      ],
-      "name": "newPost",
-      "type": "event"
-    },
-    {
-      "inputs": [
-        {
-          "components": [
-            {
-              "internalType": "string",
-              "name": "postIpfsHash",
-              "type": "string"
-            },
-            {
-              "internalType": "address",
-              "name": "user",
-              "type": "address"
-            },
-            {
-              "internalType": "uint256",
-              "name": "dateTIme",
-              "type": "uint256"
-            }
-          ],
-          "internalType": "struct SocialPost.Post",
-          "name": "post",
-          "type": "tuple"
-        }
-      ],
-      "name": "AddPost",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "time",
-          "type": "uint256"
-        }
-      ],
-      "name": "getPostbyTime",
-      "outputs": [
-        {
-          "components": [
-            {
-              "internalType": "string",
-              "name": "postIpfsHash",
-              "type": "string"
-            },
-            {
-              "internalType": "address",
-              "name": "user",
-              "type": "address"
-            },
-            {
-              "internalType": "uint256",
-              "name": "dateTIme",
-              "type": "uint256"
-            }
-          ],
-          "internalType": "struct SocialPost.Post",
-          "name": "",
-          "type": "tuple"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    }
-  ]
+[
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "postIpfsHash",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "dateTime",
+        "type": "uint256"
+      }
+    ],
+    "name": "newPost",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "postIpfsHash",
+            "type": "string"
+          },
+          {
+            "internalType": "address",
+            "name": "user",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "dateTIme",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct SocailPost.Post",
+        "name": "_post",
+        "type": "tuple"
+      }
+    ],
+    "name": "AddPost",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "Posts",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "postIpfsHash",
+        "type": "string"
+      },
+      {
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "dateTIme",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getAllPosts",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "postIpfsHash",
+            "type": "string"
+          },
+          {
+            "internalType": "address",
+            "name": "user",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "dateTIme",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct SocailPost.Post[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "Id",
+        "type": "uint256"
+      }
+    ],
+    "name": "getPostbyId",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "postIpfsHash",
+            "type": "string"
+          },
+          {
+            "internalType": "address",
+            "name": "user",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "dateTIme",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct SocailPost.Post",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]

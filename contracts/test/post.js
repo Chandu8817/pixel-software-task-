@@ -20,7 +20,7 @@ describe("Social post", function () {
 
     describe("Deployment", function () {
 
-        it("Should add post and emit event new post", async function () {
+        it("Should add post", async function () {
             const { socailPost, owner, otherAccount } = await loadFixture(deployOneYearLockFixture);
             const time = Math.floor(Date.now() / 1000).toString()
             await socailPost.connect(otherAccount).AddPost([
@@ -29,7 +29,7 @@ describe("Social post", function () {
                 ethers.BigNumber.from(time)
 
             ])
-            const post = await socailPost.getPostbyHash("QmSp6LTFfhZtEei22NhrWAdtnXUB4zEdKnYVghchGAc7mw")
+            const post = await socailPost.getPostbyId(1)
             expect(post[0]).to.equal("QmSp6LTFfhZtEei22NhrWAdtnXUB4zEdKnYVghchGAc7mw");
 
         });
@@ -39,10 +39,10 @@ describe("Social post", function () {
 
             const time = Math.floor(Date.now() / 1000).toString()
 
-            await expect(socailPost.getPostbyHash("QmSp6LTFfhZtEei22NhrWAdtnXUB4zEdKnYVghchGAc7m")).revertedWith("no post availabe")
+            await expect(socailPost.getPostbyId(2)).revertedWith("no post availabe")
 
         });
-        it("Should add post and emit event new post", async function () {
+        it("Should add post and emit event newpost", async function () {
             const { socailPost, owner, otherAccount } = await loadFixture(deployOneYearLockFixture);
 
             const time = Math.floor(Date.now() / 1000).toString()
@@ -78,6 +78,19 @@ describe("Social post", function () {
 
             ])
             const posts = await socailPost.getAllPosts()
+            expect(posts.length).to.equal(2)
+        })
+        it("should return post by Index",async function(){
+            const { socailPost, owner, otherAccount } = await loadFixture(deployOneYearLockFixture);
+            const time = Math.floor(Date.now() / 1000).toString()
+            await socailPost.connect(otherAccount).AddPost([
+                "QmSp6LTFfhZtEei22NhrWAdtnXUB4zEdKnYVghchGAc7mw",
+                otherAccount.address,
+                ethers.BigNumber.from(time)
+
+            ])
+            
+            const posts = await socailPost.Posts(0)
             expect(posts.length).to.equal(2)
         })
 

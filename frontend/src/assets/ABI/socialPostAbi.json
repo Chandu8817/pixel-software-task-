@@ -45,7 +45,7 @@
           }
         ],
         "internalType": "struct SocailPost.Post",
-        "name": "post",
+        "name": "_post",
         "type": "tuple"
       }
     ],
@@ -116,12 +116,12 @@
   {
     "inputs": [
       {
-        "internalType": "string",
-        "name": "posthash",
-        "type": "string"
+        "internalType": "uint256",
+        "name": "Id",
+        "type": "uint256"
       }
     ],
-    "name": "getPostbyHash",
+    "name": "getPostbyId",
     "outputs": [
       {
         "components": [
