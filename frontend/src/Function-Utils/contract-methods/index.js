@@ -4,7 +4,7 @@ import abi from "../../assets/ABI/socialPostAbi.json"
 export async function ContractMethods() {
 
     const web3 = await connectWallet()
-    const socialContract = new web3.eth.Contract(abi, "0xbB139FecaC5170E983C5bcef94b38E64FcC4D210")
+    const socialContract = new web3.eth.Contract(abi, "0x11e7910BF86AE5CF639400833F5eF8F6E0d67439")
 
     return socialContract
 
