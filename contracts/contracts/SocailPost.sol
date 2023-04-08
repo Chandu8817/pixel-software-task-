@@ -9,17 +9,16 @@ contract SocailPost {
         address user;
         uint256 dateTIme;
     }
-    event newPost(string postIpfsHash, address user, uint256 dateTime);
+    event newPost(uint256 ID, string postIpfsHash, address user, uint256 dateTime);
     mapping(uint256=> Post) post;
     Post[]  public Posts;
 
     function AddPost(Post calldata _post) public {
-        
-            PostIdCounter++;
-            
-        Posts.push(_post);
+        require(_post.user != address(0),"user address should be non zero address");
+        PostIdCounter++;   
         post[PostIdCounter]= _post;
-        emit newPost(_post.postIpfsHash, _post.user, _post.dateTIme);
+        Posts.push(_post);
+        emit newPost(PostIdCounter, _post.postIpfsHash, _post.user, _post.dateTIme);
     }
 
 

@@ -11,11 +11,12 @@ describe("Social post", function () {
     // We use loadFixture to run this setup once, snapshot that state,
     // and reset Hardhat Network to that snapshot in every test.
     async function deployOneYearLockFixture() {
+         const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000';
         // Contracts are deployed using the first signer/account by default
         const [owner, otherAccount] = await ethers.getSigners();
         const SocailPost = await ethers.getContractFactory("SocailPost");
         const socailPost = await SocailPost.deploy();
-        return { socailPost, owner, otherAccount };
+        return { socailPost, owner, otherAccount, ZERO_ADDRESS };
     }
 
     describe("Deployment", function () {
@@ -42,6 +43,21 @@ describe("Social post", function () {
             await expect(socailPost.getPostbyId(2)).revertedWith("no post availabe")
 
         });
+        it("Should revert with message address zero", async function () {
+            const { socailPost, owner, otherAccount,ZERO_ADDRESS } = await loadFixture(deployOneYearLockFixture);
+            const time = Math.floor(Date.now() / 1000).toString()
+            
+            
+            await expect(
+                 socailPost.connect(otherAccount).AddPost([
+                    "QmSp6LTFfhZtEei22NhrWAdtnXUB4zEdKnYVghchGAc7mw",
+                    ZERO_ADDRESS,
+                    ethers.BigNumber.from(time)
+    
+                ])
+            ).revertedWith("user address should be non zero address")
+
+        });
         it("Should add post and emit event newpost", async function () {
             const { socailPost, owner, otherAccount } = await loadFixture(deployOneYearLockFixture);
 
@@ -56,7 +72,7 @@ describe("Social post", function () {
                 ])
             )
                 .to.emit(socailPost, "newPost")
-                .withArgs("QmSp6LTFfhZtEei22NhrWAdtnXUB4zEdKnYVghchGAc7mw",
+                .withArgs(1,"QmSp6LTFfhZtEei22NhrWAdtnXUB4zEdKnYVghchGAc7mw",
                     otherAccount.address,
                     ethers.BigNumber.from(time));
 
@@ -91,7 +107,7 @@ describe("Social post", function () {
             ])
             
             const posts = await socailPost.Posts(0)
-            expect(posts.length).to.equal(2)
+            expect(posts.user).to.equal(otherAccount.address)
         })
 
     });
