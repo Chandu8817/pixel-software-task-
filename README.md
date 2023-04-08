@@ -1,7 +1,9 @@
 # pixel-software-task-
  This project is based on socail media post using blockchain <br />
  Tech used in project react-js,node-js, hardhat for contracts, polygon testnet blockchain for deployment <br />
- Using front-end user can add new posts 
+ Using front-end user can add new posts and see his post just after transaction is done  on same screen <br />
+ All Posts are show on home page 
+
 
 
 
