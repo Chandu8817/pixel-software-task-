@@ -12,7 +12,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import {connectWallet, dissconnectWallet} from "../../Function-Utils/wallet-connect"
+import { connectWallet, dissconnectWallet } from "../../Function-Utils/wallet-connect"
 // import { Link } from '@mui/material';
 import { Link } from "react-router-dom";
 
@@ -37,29 +37,29 @@ function Header() {
   };
 
   const handleCloseUserMenu = () => {
-        handleDissconnectWallet()
+    handleDissconnectWallet()
     setAnchorElUser(null);
   };
 
-  const handleConnectWallet = async()=>{
-   const web3 =  await connectWallet()
-   const accountAddress = await web3.eth.getAccounts();
-   setAccount(accountAddress[0])
+  const handleConnectWallet = async () => {
+    const web3 = await connectWallet()
+    const accountAddress = await web3.eth.getAccounts();
+    setAccount(accountAddress[0])
 
   }
 
-  const handleDissconnectWallet= async()=>{
+  const handleDissconnectWallet = async () => {
     // const web3 =  await dissconnectWallet()
     // const accountAddress = await web3.eth.getAccounts();
     setAccount(null)
 
   }
 
-  React. useEffect(() => {
+  React.useEffect(() => {
     // Update the document title using the browser API
-    console.log(account,"<<<<<<<<")
-  
-  },[]);
+    console.log(account, "<<<<<<<<")
+
+  }, []);
 
   return (
     <AppBar position="static">
@@ -67,26 +67,26 @@ function Header() {
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Link to='/'>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography></Link>
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              href="/"
+              sx={{
+                mr: 2,
+                display: { xs: 'none', md: 'flex' },
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none',
+              }}
+            >
+              LOGO
+            </Typography></Link>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            
+
             {/* <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
@@ -134,55 +134,55 @@ function Header() {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Link to={page}>
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
+                <Button
+                  key={page}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  {page}
+                </Button>
               </Link>
             ))}
           </Box>
 
-        { !account?<Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="connect metamask"> 
-            <Button variant="contained" color="warning" onClick={handleConnectWallet}>
-  Connect metamask
-</Button>
+          {!account ? <Box sx={{ flexGrow: 0 }}>
+            <Tooltip title="connect metamask">
+              <Button variant="contained" color="warning" onClick={handleConnectWallet}>
+                Connect metamask
+              </Button>
             </Tooltip>
-            
+
           </Box>
-         : <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings"> 
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                <p>{account}</p>
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>}
+            : <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                  <p>{account}</p>
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: '45px' }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                {settings.map((setting) => (
+                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center">{setting}</Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>}
         </Toolbar>
       </Container>
     </AppBar>

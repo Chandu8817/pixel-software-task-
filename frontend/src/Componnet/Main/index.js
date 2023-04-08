@@ -9,10 +9,10 @@ import PostList from '../PostList';
 function Main() {
   return (
     <div>
-        <PostList/>
-       
-    </div>   
- 
+      <PostList />
+
+    </div>
+
   );
 }
 
