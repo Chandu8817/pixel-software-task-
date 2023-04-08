@@ -15,17 +15,28 @@
  `npx harhat run ./srcipts/deploy-socialPost.js --network mumbai` for contract deployment on testnet polygon <br />
  .env for storing private key and api keys  
 
-# node backend event lisnter  deployment
+# Node backend event lisnter  deployment
  `npm install`  for node packeges <br />
  `npm run dev` for run node backend API <br />
  `node ./listener.js`   for blockchain smart contract new posts logs events <br />
  .env for storing API keys 
 
 
-# react frontend 
- `npm install` for node packages__
- `npm start` for start react app__
- .env for storing API keys__
+# React frontend 
+ `npm install` for node packages <br/>
+ `npm start` for start react app <br/>
+ .env for storing API keys <br/>
+
+# env exmaples
+Frontend 
+ REACT_APP_PINATA_API_KEY="" <br/>
+ REACT_APP_PINATA_API_SECRET=""<br/>
+ JWT=""<br/>
+Backend 
+ JWT=""<br/>
+Hardhat
+ RPCKEY= ""<br/>
+ PRIVATEKEY = ""
 
 
 
